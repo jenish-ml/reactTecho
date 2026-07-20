@@ -1,0 +1,149 @@
+React Learning Notes — Expanded (Point-wise, per topic)
+
+1) What is React
+- Library for building UIs with components and a virtual DOM.
+- Declarative: describe UI for each state; React updates the DOM.
+- Component-driven: build complex UIs by composing small parts.
+
+2) JSX
+- Syntax that mixes HTML-like tags with JavaScript expressions.
+- Must use one parent element; use fragments <>...</> when needed.
+- Expressions: use curly braces `{}` for JS values, inline logic, and props.
+- You can conditionally render, map arrays, and call functions inside JSX.
+
+3) Components
+- Function components: prefer them; simple and work with hooks.
+- Class components: provide lifecycle methods and error boundaries.
+- Split UI into small, focused components for reuse and testability.
+
+Lifecycle (Component lifecycle)
+- Phases: Mounting, Updating, Unmounting (and Error handling).
+- Class lifecycle methods (mount/update/unmount):
+	- `constructor(props)`: initialize state and bind handlers.
+	- `render()`: returns JSX to be displayed.
+	- `componentDidMount()`: runs once after the component mounts (fetch data, start timers).
+	- `componentDidUpdate(prevProps, prevState)`: runs after updates; compare prev values to respond to changes.
+	- `componentWillUnmount()`: cleanup timers, listeners, or subscriptions.
+	- `shouldComponentUpdate(nextProps, nextState)`: optionally prevent re-renders by returning false.
+	- `getDerivedStateFromProps(props, state)`: rare static method to update state from props.
+	- `getSnapshotBeforeUpdate(prevProps, prevState)`: capture DOM info before changes.
+- Hooks equivalents:
+	- `useEffect(() => {...}, [])` => mount behavior; cleanup function => unmount.
+	- `useEffect(() => {...}, [dep])` => runs when `dep` changes (update behavior).
+	- Use `useRef` to persist values across renders without causing re-renders.
+- Best practices:
+	- Prefer hooks and `useEffect` for new code; keep effects focused and declarative.
+	- Clean up subscriptions and timers in effect cleanup to avoid memory leaks.
+	- Avoid heavy synchronous work during render; defer to effects.
+	- Use `shouldComponentUpdate` or `React.memo` for expensive components.
+
+4) Props
+- Read-only inputs passed from parent to child components.
+- Use defaultProps or default parameter values for optional props.
+- Validate shape with PropTypes or TypeScript interfaces.
+
+5) State
+- Local component data that triggers re-renders when updated.
+- Use `useState` for simple state; `useReducer` for complex updates.
+- Keep state minimal and derive UI from state, not vice versa.
+
+6) Hooks (overview)
+- `useState`: local state variables.
+- `useEffect`: run side-effects after render.
+- `useRef`: persist mutable values without re-rendering.
+- `useContext`: consume context values.
+- `useMemo`/`useCallback`: memoize values or functions for performance.
+
+7) useEffect (details)
+- Runs after render; dependencies array controls when it re-runs.
+- Empty `[]` => run once (mount); no array => runs after every render.
+- Return a cleanup function to cancel timers or subscriptions.
+- Avoid heavy work in effects; prefer async functions inside the effect.
+
+8) Event handling
+- Use camelCase event props: `onClick`, `onChange`, `onSubmit`.
+- Pass handler functions, not strings; use `e.preventDefault()` for forms.
+- Use functional updates (`setState(prev => ...)`) when new state depends on old.
+
+9) Conditional rendering
+- Use `&&` for simple conditions and ternary `? :` for two branches.
+- Extract conditional UI to small functions/components for clarity.
+
+10) Lists & keys
+- Render arrays with `.map(item => <Item key={id} ... />)`.
+- Keys should be stable, unique identifiers — avoid index-based keys when possible.
+
+11) Forms
+- Controlled inputs: value bound to state and onChange updates state.
+- Uncontrolled inputs: use refs for occasional reads.
+- Validate input and show inline errors; handle submit centrally.
+
+12) Lifting state up
+- Move shared state to the nearest common ancestor to sync components.
+- Pass down setters or callback handlers as props to children.
+
+13) Composition vs Inheritance
+- Compose components via children and props instead of class inheritance.
+- Use higher-order components or render props patterns when needed.
+
+14) Context API
+- Create context to provide data to many components without prop drilling.
+- Use `Context.Provider` at a high level and `useContext` to consume.
+- Avoid overusing context; prefer props for local passing.
+
+15) Routing
+- Use React Router: `<BrowserRouter>`, `<Routes>`, `<Route>`.
+- Use URL params, query strings, and nested routes for organized navigation.
+
+16) Data fetching
+- Fetch inside `useEffect`; track `loading`, `data`, `error` states.
+- Cancel in-flight requests in cleanup or use AbortController.
+- Consider libraries like React Query or SWR for caching and retries.
+
+17) Performance optimization
+- Avoid unnecessary renders with `React.memo`, `useMemo`, `useCallback`.
+- Profile with React DevTools and optimize expensive components.
+- Split code with lazy/eager loading and `React.lazy` + `Suspense`.
+
+18) Refs
+- `useRef` for DOM access, focus control, or storing mutable values.
+- Avoid using refs for typical UI flow; prefer state-driven UI.
+
+19) Error boundaries
+- Use class components with `componentDidCatch` to catch render errors.
+- Provide fallback UI and optional logging; hooks cannot be error boundaries.
+
+20) Testing
+- Unit/integration with Jest and React Testing Library.
+- Test component behavior, not implementation details (avoid internal state checks).
+
+21) Styling
+- Options: plain CSS, CSS Modules, styled-components, Tailwind, or other CSS-in-JS.
+- Scope styles to components and prefer predictable class naming.
+
+22) TypeScript
+- Strongly type props, state, and custom hooks for safer refactoring.
+- Use `React.FC` carefully; prefer explicit prop typing.
+
+23) Accessibility (a11y)
+- Use semantic HTML (buttons, labels, headings).
+- Ensure keyboard navigation, ARIA roles when necessary, and readable contrast.
+
+24) Build & Deployment
+- Dev tooling: Vite, CRA, Next.js — know how to build and serve static assets.
+- Deploy to Netlify, Vercel, GitHub Pages, or static hosting; set correct `base`/`homepage` when needed.
+
+Quick Learning Path (expanded)
+- Start: JSX basics, building simple function components.
+- Next: State and props, event handling, and forms.
+- Then: Hooks (useEffect, useRef), composition, and lifting state.
+- Advanced: Context, routing, performance, testing, TypeScript.
+- Projects: Todo app, weather app, notes app, blog with routing.
+
+Helpful Commands
+- Create project (Vite): `npm create vite@latest my-app --template react`
+- Start dev server: `npm install` then `npm run dev`
+
+Resources
+- Official docs: https://reactjs.org/
+
