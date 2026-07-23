@@ -48,6 +48,7 @@ Lifecycle (Component lifecycle)
 - Keep state minimal and derive UI from state, not vice versa.
 
 6) Hooks (overview)
+- Built-in functions to use state and lifecycle features in function components.
 - `useState`: local state variables.
 - `useEffect`: run side-effects after render.
 - `useRef`: persist mutable values without re-rendering.
@@ -120,30 +121,3 @@ Lifecycle (Component lifecycle)
 21) Styling
 - Options: plain CSS, CSS Modules, styled-components, Tailwind, or other CSS-in-JS.
 - Scope styles to components and prefer predictable class naming.
-
-22) TypeScript
-- Strongly type props, state, and custom hooks for safer refactoring.
-- Use `React.FC` carefully; prefer explicit prop typing.
-
-23) Accessibility (a11y)
-- Use semantic HTML (buttons, labels, headings).
-- Ensure keyboard navigation, ARIA roles when necessary, and readable contrast.
-
-24) Build & Deployment
-- Dev tooling: Vite, CRA, Next.js — know how to build and serve static assets.
-- Deploy to Netlify, Vercel, GitHub Pages, or static hosting; set correct `base`/`homepage` when needed.
-
-Quick Learning Path (expanded)
-- Start: JSX basics, building simple function components.
-- Next: State and props, event handling, and forms.
-- Then: Hooks (useEffect, useRef), composition, and lifting state.
-- Advanced: Context, routing, performance, testing, TypeScript.
-- Projects: Todo app, weather app, notes app, blog with routing.
-
-Helpful Commands
-- Create project (Vite): `npm create vite@latest my-app --template react`
-- Start dev server: `npm install` then `npm run dev`
-
-Resources
-- Official docs: https://reactjs.org/
-
