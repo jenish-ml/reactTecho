@@ -1,4 +1,4 @@
-# React Learning Notes (Interview + Revision)
+# React Learning Notes - Interview + Revision
 
 ## 1. What is React?
 
@@ -8,8 +8,6 @@
 - Uses **Virtual DOM** for fast rendering.
 - Declarative: Describe the UI, React updates the DOM automatically.
 - Reusable components reduce code duplication.
-
----
 
 ## 2. Features of React
 
@@ -23,8 +21,6 @@
 - Rich Ecosystem
 - Cross-platform (React Native)
 
----
-
 ## 3. JSX (JavaScript XML)
 
 - HTML-like syntax inside JavaScript.
@@ -33,15 +29,13 @@
 - Use `{}` to write JavaScript expressions.
 - Supports conditions, loops (`map()`), function calls, and variables.
 
-Example:
+**Example**
 
 ```jsx
 const name = "Jenish";
 
 return <h1>Hello {name}</h1>;
 ```
-
----
 
 ## 4. Components
 
@@ -52,8 +46,8 @@ return <h1>Hello {name}</h1>;
 - Preferred in modern React.
 
 ```jsx
-function Home(){
-   return <h1>Home</h1>;
+function Home() {
+  return <h1>Home</h1>;
 }
 ```
 
@@ -64,27 +58,21 @@ function Home(){
 - Uses lifecycle methods.
 - Mostly used in legacy projects.
 
----
-
 ## 5. Props
 
-- Props = Read-only data passed from Parent -> Child.
+- Props = Read-only data passed from Parent → Child.
 - Cannot modify props inside child.
 - Used for communication between components.
 
----
-
 ## 6. State
 
-- Local data managed by component.
-- Updating state causes re-render.
+- Local data managed by the component.
+- Updating state causes a re-render.
 - `useState()` is used in functional components.
 
 ```jsx
-const [count,setCount]=useState(0);
+const [count, setCount] = useState(0);
 ```
-
----
 
 ## 7. Hooks
 
@@ -106,8 +94,6 @@ Hooks are built-in React functions introduced in **React 16.8** that allow funct
 - useTransition()
 - useDeferredValue()
 
----
-
 ## 8. Lifecycle Methods
 
 ### Lifecycle Phases
@@ -118,105 +104,97 @@ Hooks are built-in React functions introduced in **React 16.8** that allow funct
 
 ### Class Lifecycle
 
-**constructor()**
+#### constructor()
 
-- Initialize state
-- Bind event handlers
+- Initialize state.
+- Bind event handlers.
 
-**render()**
+#### render()
 
-- Returns JSX
+- Returns JSX.
 
-**componentDidMount()**
+#### componentDidMount()
 
-- Runs once after component loads
-- API calls
-- Timers
-- Event listeners
+- Runs once after the component loads.
+- API calls.
+- Timers.
+- Event listeners.
 
-**componentDidUpdate()**
+#### componentDidUpdate()
 
-- Runs after update
-- Compare previous props/state
+- Runs after updates.
+- Compare previous props/state.
 
-**componentWillUnmount()**
+#### componentWillUnmount()
 
-- Cleanup
-- Remove listeners
-- Clear timers
+- Cleanup.
+- Remove event listeners.
+- Clear timers.
 
 ### Hooks Equivalent
 
-Mount
+**Mount**
 
 ```jsx
-useEffect(()=>{
-},[])
+useEffect(() => {}, []);
 ```
 
-Update
+**Update**
 
 ```jsx
-useEffect(()=>{
-},[count])
+useEffect(() => {}, [count]);
 ```
 
-Unmount
+**Unmount**
 
 ```jsx
-useEffect(()=>{
-   return ()=>{
-   }
-},[])
+useEffect(() => {
+  return () => {};
+}, []);
 ```
-
----
 
 ## 9. useEffect()
 
-Used for Side Effects.
+Used for side effects.
 
-Examples
+### Examples
 
 - API Calls
 - Timers
 - Event Listeners
 - Local Storage
 
-Dependency Array
-
-```jsx
-useEffect(()=>{})
-```
+### Dependency Array
 
 Runs after every render.
 
 ```jsx
-useEffect(()=>{},[])
+useEffect(() => {});
 ```
 
 Runs once.
 
 ```jsx
-useEffect(()=>{},[count])
+useEffect(() => {}, []);
 ```
 
-Runs when count changes.
-
-Cleanup
+Runs when `count` changes.
 
 ```jsx
-useEffect(()=>{
-   return ()=>{
-   }
-},[])
+useEffect(() => {}, [count]);
 ```
 
----
+### Cleanup
+
+```jsx
+useEffect(() => {
+  return () => {};
+}, []);
+```
 
 ## 10. Event Handling
 
-Common Events
+### Common Events
 
 - onClick
 - onChange
@@ -224,112 +202,95 @@ Common Events
 - onMouseEnter
 - onKeyDown
 
-Example
+**Example**
 
 ```jsx
 <button onClick={handleClick}>Click</button>
 ```
 
----
-
 ## 11. Conditional Rendering
 
-Using if
+### Using if
 
 ```jsx
-if(isLogin){
- return <Home/>
+if (isLogin) {
+  return <Home />;
 }
 ```
 
-Using &&
+### Using &&
 
 ```jsx
-{isLogin && <Home/>}
+{
+  isLogin && <Home />;
+}
 ```
 
-Using Ternary
+### Using Ternary
 
 ```jsx
-{isLogin ? <Home/> : <Login/>}
+{
+  isLogin ? <Home /> : <Login />;
+}
 ```
-
----
 
 ## 12. Lists & Keys
 
 Render using `map()`.
 
 ```jsx
-users.map(user=>(
-<div key={user.id}>{user.name}</div>
-))
+users.map((user) => <div key={user.id}>{user.name}</div>);
 ```
 
-Key should be
+### Key should be
 
 - Unique
 - Stable
 - Avoid array index
 
----
-
 ## 13. Forms
 
-Controlled Component
+### Controlled Component
 
 ```jsx
-<input
-value={name}
-onChange={(e)=>setName(e.target.value)}
-/>
+<input value={name} onChange={(e) => setName(e.target.value)} />
 ```
 
-Uncontrolled Component
+### Uncontrolled Component
 
-- Uses Ref
-
----
+- Uses Ref.
 
 ## 14. Lifting State Up
 
 Move shared state to the nearest common parent.
 
-Purpose
+### Purpose
 
 - Share data between sibling components.
-
----
 
 ## 15. Context API
 
 Avoids Prop Drilling.
 
-Steps
+### Steps
 
 - createContext()
 - Provider
 - useContext()
 
----
-
 ## 16. Props Drilling
 
 Passing props through multiple components unnecessarily.
 
-Solution
+### Solution
 
 - Context API
 - Redux
 - Zustand
 
----
-
 ## 17. Routing
 
-React Router
-
-Components
+React Router Components
 
 - BrowserRouter
 - Routes
@@ -339,28 +300,24 @@ Components
 - useNavigate
 - useParams
 
----
-
 ## 18. Data Fetching
 
-Usually done using
+Usually done using:
 
 ```jsx
-useEffect()
+useEffect();
 ```
 
-Methods
+### Methods
 
 - fetch()
 - Axios
 
-Maintain
+### Maintain
 
 - Loading
 - Data
 - Error
-
----
 
 ## 19. Performance Optimization
 
@@ -370,38 +327,32 @@ Maintain
 - Lazy Loading
 - Suspense
 
-Purpose
+### Purpose
 
 Avoid unnecessary re-rendering.
 
----
-
 ## 20. useRef()
 
-Used for
+Used for:
 
 - DOM Access
 - Focus input
 - Store mutable values
 
-Updating ref does NOT re-render.
-
----
+Updating a ref does **not** re-render the component.
 
 ## 21. Error Boundaries
 
 Only available in Class Components.
 
-Methods
+### Methods
 
 - componentDidCatch()
 - getDerivedStateFromError()
 
-Purpose
+### Purpose
 
-Prevent application crash.
-
----
+Prevent application crashes.
 
 ## 22. Styling
 
@@ -413,8 +364,6 @@ Options
 - Tailwind CSS
 - Styled Components
 
----
-
 ## 23. Testing
 
 Libraries
@@ -422,76 +371,66 @@ Libraries
 - Jest
 - React Testing Library
 
-Test
+### Test
 
 - Components
 - User interaction
 - Rendering
 - API behavior
 
----
-
 ## 24. Virtual DOM
 
 Virtual DOM is a lightweight copy of the Real DOM.
 
-Steps
+### Steps
 
 1. State changes.
-2. New Virtual DOM created.
-3. Diffing compares old & new Virtual DOM.
-4. Reconciliation updates only changed parts in the Real DOM.
+2. New Virtual DOM is created.
+3. Diffing compares the old and new Virtual DOM.
+4. Reconciliation updates only the changed parts in the Real DOM.
 
-Benefit
+### Benefits
 
 - Faster rendering
 - Better performance
 
----
-
 ## 25. One-Way Data Binding
 
-Data flows only from Parent -> Child.
+Data flows only from Parent → Child.
 
-Benefits
+### Benefits
 
 - Predictable
 - Easy debugging
 - Better state management
 
----
-
 ## 26. Controlled vs Uncontrolled Components
 
-Controlled
+### Controlled
 
-- State controls input.
+- State controls the input.
 - Easy validation.
 - Recommended.
 
-Uncontrolled
+### Uncontrolled
 
-- Ref controls input.
+- Ref controls the input.
 - Less code.
 - Used occasionally.
 
----
-
 ## 27. React Folder Structure
 
-```
+```text
 src/
- ├── assets/
- ├── components/
- ├── pages/
- ├── hooks/
- ├── context/
- ├── services/
- ├── App.jsx
- └── main.jsx
+├── assets/
+├── components/
+├── pages/
+├── hooks/
+├── context/
+├── services/
+├── App.jsx
+└── main.jsx
 ```
-
----
 
 ## 28. React Best Practices
 
@@ -503,48 +442,46 @@ src/
 - Use unique keys.
 - Keep state minimal.
 - Reuse components.
-- Write clean folder structure.
+- Write a clean folder structure.
 - Avoid unnecessary re-renders.
 
----
+# Interview Definitions (One-line)
 
-## Interview Definitions (One-line)
-
-**React**
+**React**  
 JavaScript library for building user interfaces.
 
-**JSX**
+**JSX**  
 HTML-like syntax used inside JavaScript.
 
-**Component**
+**Component**  
 Reusable piece of UI.
 
-**Props**
+**Props**  
 Read-only data passed from parent to child.
 
-**State**
-Component's local data that triggers re-render.
+**State**  
+Component's local data that triggers re-rendering.
 
-**Hooks**
+**Hooks**  
 Built-in React functions that allow functional components to use state, lifecycle methods, and other React features.
 
-**Virtual DOM**
-A lightweight copy of the Real DOM used to update only changed elements efficiently.
+**Virtual DOM**  
+A lightweight copy of the Real DOM used to efficiently update only changed elements.
 
-**useEffect**
+**useEffect**  
 Hook used to perform side effects such as API calls, timers, and event listeners.
 
-**Context API**
+**Context API**  
 Provides data across components without prop drilling.
 
-**React.memo**
+**React.memo**  
 Prevents unnecessary component re-rendering.
 
-**useMemo**
+**useMemo**  
 Memoizes expensive calculations.
 
-**useCallback**
+**useCallback**  
 Memoizes functions.
 
-**useRef**
+**useRef**  
 Stores mutable values or accesses DOM elements without causing re-renders.
