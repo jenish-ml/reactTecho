@@ -4,7 +4,6 @@ const Timer = () => {
     const [time, setTime] = useState(0);
 
     useEffect(() => {
-        console.log("Mounted");
         const interval = setInterval(() => {
             setTime((prevTime) => prevTime + 1);
         }, 1000);

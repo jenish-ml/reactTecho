@@ -14,9 +14,11 @@ import Effect from "./Effect/Effect"
 import Mounting from "./Effect/Mounting"
 import Updating from "./Effect/Updating"
 import MultipleUpdate from "./Effect/MultipleUpdate"
+import FetchData from "./Effect/FetchData"
 
 function App() {
-  // const [show, setShow] = useState(true);
+
+  const [show, setShow] = useState(true)
   return (
     <>
 
@@ -38,7 +40,10 @@ function App() {
       {/* <Effect /> */}
       {/* <Mounting /> */}
       {/* <Updating /> */}
-      <MultipleUpdate />
+      {/* <MultipleUpdate /> */}
+      {/* <FetchData /> */}
+      { show && <Timer />}
+      <button onClick={() => setShow(!show)}>Toggle Button</button>
     </>
   )
 }
