@@ -15,8 +15,16 @@ import Mounting from "./Effect/Mounting"
 import Updating from "./Effect/Updating"
 import MultipleUpdate from "./Effect/MultipleUpdate"
 import FetchData from "./Effect/FetchData"
+import Parent from "./components/propsDrilling/Parent"
+import Child from "./components/propsDrilling/Child"
+import GrandChild from "./components/propsDrilling/GrandChild"
+import { createContext } from "react"
+import NewParent from "./components/useContextLearn/NewParent"
+
+export const NameContext = createContext()
 
 function App() {
+
 
   const [show, setShow] = useState(true)
   return (
@@ -42,10 +50,15 @@ function App() {
       {/* <Updating /> */}
       {/* <MultipleUpdate /> */}
       {/* <FetchData /> */}
-      { show && <Timer />}
-      <button onClick={() => setShow(!show)}>Toggle Button</button>
+      {/* { show && <Timer />} */}
+      {/* <button onClick={() => setShow(!show)}>Toggle Button</button> */}
+      <Parent />
+
+      <NameContext.Provider value={"Techolas"}>
+        <NewParent />
+      </NameContext.Provider>
     </>
   )
 }
-
+ 
 export default App
