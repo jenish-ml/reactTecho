@@ -18,18 +18,28 @@ import FetchData from "./Effect/FetchData"
 import Parent from "./components/propsDrilling/Parent"
 import Child from "./components/propsDrilling/Child"
 import GrandChild from "./components/propsDrilling/GrandChild"
-import { createContext } from "react"
 import NewParent from "./components/useContextLearn/NewParent"
+import { ThemeContext } from "./context/ThemeContext"
+import FetchPost from "./Effect/FetchPost"
+import First from "./PropsDrilling/First"
+import Second from "./PropsDrilling/Second"
 
-export const NameContext = createContext()
+
+
+import { createContext } from "react"
+import One from "./Contextlearn/One"
+
+
+export const NameContext = createContext();
 
 function App() {
 
-
   const [show, setShow] = useState(true)
+  const [theme, setTheme] = useState("light")
   return (
     <>
-
+    <div className={theme === "light" ? "themeLight" : "themeDark"}>
+      
       {/* <Home /> */}
       {/* <Status isLoggedIn={false}/> */}
       {/* <Counter /> */}
@@ -52,13 +62,23 @@ function App() {
       {/* <FetchData /> */}
       {/* { show && <Timer />} */}
       {/* <button onClick={() => setShow(!show)}>Toggle Button</button> */}
-      <Parent />
 
-      <NameContext.Provider value={"Techolas"}>
-        <NewParent />
-      </NameContext.Provider>
+      {/* <button
+        onClick={() =>
+          setTheme(theme === "light" ? "dark" : "light")
+        }
+      >
+        Toggle Theme
+      </button>
+
+      <NewParent /> */}
+      {/* <FetchPost /> */}
+    <NameContext.Provider value = {"Techolas"}>
+      <One />
+    </NameContext.Provider>
+    </div>
     </>
   )
 }
- 
+
 export default App
